@@ -38,3 +38,14 @@ def modify_task(task_id: int, task: Task, session: Session = Depends(get_session
     if not updated:
         raise HTTPException(status_code=404, detail="Task not found")
     return updated
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or specify ["http://localhost:3005"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
